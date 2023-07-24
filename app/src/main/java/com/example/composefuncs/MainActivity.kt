@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.selection.DisableSelection
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -44,55 +46,26 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    CustomText()
                 }
             }
         }
     }
 }
-
 @Composable
 fun CustomText() {
-    Text(
-        text = stringResource(id = R.string.hello_world),
-        modifier = Modifier
-            .background(Color.Blue)
-            .padding(16.dp)
-            .width(200.dp),
-        color = Color.White,
-        fontSize = MaterialTheme.typography.headlineLarge.fontSize,
-        fontStyle = FontStyle.Italic,
-        fontWeight = FontWeight.Bold,
-        textAlign = TextAlign.Center
-
-    )
-}
-
-@Composable
-fun CustomText2() {
-    Text(buildAnnotatedString {
-        withStyle(style = ParagraphStyle(textAlign = TextAlign.Center)){
-            withStyle(
-                style = SpanStyle(
-                    color = MaterialTheme.colorScheme.primary,
-                fontSize = 30.sp,
-                fontWeight = FontWeight.Bold
-                    )
-            ){
-                append("A")
+    SelectionContainer {
+        Column {
+            Text(text = "Hello World!")
+            DisableSelection {
+                Text(text = "Hello World!")
             }
-            append("B")
-            append("C")
-            append("D")
+            Text(text = "Hello World!")
         }
 
+    }
 
-    }, modifier = Modifier.width(200.dp))
-}
 
-@Composable
-fun CustomText3(){
-    Text(text = "Hello World!".repeat(20), maxLines = 2, overflow = TextOverflow.Ellipsis)
 }
 
 @Preview(showBackground = true)
@@ -100,7 +73,7 @@ fun CustomText3(){
 fun DefaultPreview() {
     ComposeFuncsTheme {
         Column(modifier = Modifier.fillMaxSize()) {
-            CustomText3()
+            CustomText()
         }
 
     }
