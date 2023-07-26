@@ -4,24 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.composefuncs.navigation.SetupNavGraph
+import androidx.compose.material3.ExperimentalMaterial3Api
+import com.example.composefuncs.screens.MainScreen
 
 
 import com.example.composefuncs.ui.theme.ComposeFuncsTheme
 
 
 class MainActivity : ComponentActivity() {
-    lateinit var navController:NavHostController
+    @ExperimentalMaterial3Api
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeFuncsTheme {
 
-                navController = rememberNavController()
-                    SetupNavGraph(navController = navController)
+               MainScreen()
 
             }
         }
